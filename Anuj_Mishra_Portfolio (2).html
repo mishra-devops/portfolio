@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anuj Mishra — Senior DevOps &amp; Cloud Infrastructure Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0f1a;
+    --panel: #111a2b;
+    --panel-hover: #16223a;
+    --border: #21304a;
+    --border-bright: #2e4468;
+    --text: #e7ecf5;
+    --text-dim: #8a96ab;
+    --text-faint: #57647c;
+    --accent: #34d399;
+    --accent-dim: #1f7a5c;
+    --warn: #f5a623;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.12;
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ---- Nav ---- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,15,26,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--text);}
+  .brand span{color:var(--accent);}
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:13px;}
+  .navlink{
+    background:none;border:none;cursor:pointer;font-family:var(--mono);
+    font-size:13px;color:var(--text-dim);padding:0;
+  }
+  .navlink:hover{color:var(--accent);}
+  .status-pill{
+    display:flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent-dim); padding:4px 10px; border-radius:20px;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  /* ---- Hero ---- */
+  header.hero{padding:90px 0 60px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    display:flex;align-items:center;gap:8px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:'$';color:var(--text-faint);}
+  h1{
+    font-size:clamp(32px,5vw,52px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.08;
+    max-width:820px;
+  }
+  h1 .accent-text{color:var(--accent);}
+  #typed-role{
+    font-family:var(--mono); font-size:clamp(15px,2vw,19px);
+    color:var(--text-dim); margin-top:18px; min-height:26px;
+  }
+  #typed-role::after{content:'▌';color:var(--accent);animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .hero-sub{max-width:600px;color:var(--text-dim);margin-top:20px;font-size:15px;}
+  .hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:13px;padding:11px 20px;border-radius:6px;
+    border:1px solid var(--border-bright); transition:all .2s;
+    background:none; cursor:pointer; display:inline-block;
+  }
+  .btn-primary{background:var(--accent);color:#04140d;border-color:var(--accent);font-weight:600;}
+  .btn-primary:hover{background:#2ec78d;}
+  .btn-ghost{color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ---- Status bar (signature element) ---- */
+  .statusbar{
+    margin-top:56px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:var(--panel);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .stat{
+    padding:20px 22px;
+    border-right:1px solid var(--border);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-label{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;}
+  .stat-value{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--text);margin-top:6px;}
+  .stat-value .unit{font-size:13px;color:var(--accent);margin-left:2px;}
+
+  /* ---- Section shared ---- */
+  section{padding:70px 0;border-top:1px solid var(--border);}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:36px;}
+  .section-num{font-family:var(--mono);color:var(--accent-dim);font-size:13px;}
+  .section-title{font-size:26px;font-weight:800;letter-spacing:-0.01em;}
+  .section-title span{color:var(--text-faint);font-weight:500;}
+
+  /* ---- About ---- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;}
+  .about-grid p{color:var(--text-dim);font-size:15px;margin-bottom:14px;}
+  .about-grid strong{color:var(--text);}
+  .meta-panel{
+    border:1px solid var(--border);border-radius:10px;background:var(--panel);
+    font-family:var(--mono);font-size:13px;padding:20px;
+    height:fit-content;
+  }
+  .meta-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--border);}
+  .meta-row:last-child{border-bottom:none;}
+  .meta-key{color:var(--text-faint);}
+  .meta-val{color:var(--text);text-align:right;}
+
+  /* ---- Skills ---- */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .skill-card{
+    border:1px solid var(--border);border-radius:10px;background:var(--panel);
+    padding:20px; transition:border-color .2s, transform .2s;
+  }
+  .skill-card:hover{border-color:var(--border-bright);transform:translateY(-2px);}
+  .skill-card h3{
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .skill-card h3::before{content:'▸';}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-family:var(--mono);font-size:11.5px;color:var(--text-dim);
+    border:1px solid var(--border);padding:4px 9px;border-radius:5px;background:#0d1524;
+  }
+
+  /* ---- Experience (deploy log style) ---- */
+  .job{margin-bottom:44px;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .job-title{font-size:19px;font-weight:700;}
+  .job-meta{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+  .job-company{color:var(--accent);font-family:var(--mono);font-size:13px;margin-bottom:16px;}
+  .log{list-style:none;}
+  .log li{
+    position:relative; padding:9px 0 9px 26px; color:var(--text-dim); font-size:14.5px;
+    border-left:1px solid var(--border); margin-left:4px;
+  }
+  .log li::before{
+    content:'●'; position:absolute; left:-5px; top:11px; font-size:8px; color:var(--accent);
+  }
+  .log li strong{color:var(--text);font-weight:600;}
+  .log li:last-child{border-left:1px solid transparent;}
+
+  /* ---- Highlights / projects ---- */
+  .highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .hcard{
+    border:1px solid var(--border);border-radius:10px;background:var(--panel);padding:22px;
+  }
+  .hcard .hnum{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--accent);}
+  .hcard .hlabel{font-size:13.5px;color:var(--text-dim);margin-top:6px;}
+
+  /* ---- Contact ---- */
+  .contact-panel{
+    border:1px solid var(--border);border-radius:12px;background:var(--panel);
+    padding:44px; text-align:center;
+  }
+  .contact-panel h2{font-size:28px;font-weight:800;margin-bottom:10px;}
+  .contact-panel p{color:var(--text-dim);margin-bottom:26px;}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  footer{padding:28px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-faint);border-top:1px solid var(--border);}
+
+  @media(max-width:760px){
+    .statusbar{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .about-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .highlights{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+  @media(max-width:480px){
+    .skills-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">anuj<span>@</span>devops<span>:~$</span></div>
+    <div class="navlinks">
+      <button class="navlink" data-target="about">about</button>
+      <button class="navlink" data-target="skills">skills</button>
+      <button class="navlink" data-target="experience">experience</button>
+      <button class="navlink" data-target="highlights">highlights</button>
+      <button class="navlink" data-target="contact">contact</button>
+    </div>
+    <div class="status-pill"><span class="dot"></span> open to work</div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">whoami</div>
+    <h1>Anuj Mishra — building infrastructure that <span class="accent-text">doesn't page you at 3am.</span></h1>
+    <div id="typed-role"></div>
+    <p class="hero-sub">Senior DevOps &amp; Cloud Infrastructure Engineer at Accenture. 5 years shipping AWS platforms, Kubernetes migrations, and CI/CD pipelines that hold up under real production load.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:anujmishra0801@outlook.com">Get in touch</a>
+      <button class="btn btn-ghost navlink" data-target="experience">View experience →</button>
+    </div>
+
+    <div class="statusbar">
+      <div class="stat">
+        <div class="stat-label">Experience</div>
+        <div class="stat-value">5<span class="unit">yrs</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Pipelines Built</div>
+        <div class="stat-value">60<span class="unit">+</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Microservices</div>
+        <div class="stat-value">~80<span class="unit">svc</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Deploy Time Cut</div>
+        <div class="stat-value">70<span class="unit">%</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2 class="section-title">About <span>// who's behind the pipelines</span></h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a <strong>Senior DevOps &amp; Cloud Infrastructure Engineer</strong> based in Bengaluru, currently at <strong>Accenture</strong>, where I've spent the last 5 years moving infrastructure from manual and fragile to automated and observable.</p>
+        <p>My work centers on <strong>AWS</strong>-native platforms provisioned through <strong>Terraform</strong>, container orchestration on <strong>Kubernetes</strong>, and CI/CD systems built on <strong>Jenkins</strong> and <strong>GitHub Actions</strong> — plus the GitOps and monitoring layers that keep them honest.</p>
+        <p>I got here through a straightforward promotion path: joined as a DevOps Engineer, took on more of the platform's reliability and architecture surface, and moved into a Senior role about halfway through. I still carry on-call.</p>
+      </div>
+      <div class="meta-panel">
+        <div class="meta-row"><span class="meta-key">role</span><span class="meta-val">Senior DevOps Engineer</span></div>
+        <div class="meta-row"><span class="meta-key">company</span><span class="meta-val">Accenture</span></div>
+        <div class="meta-row"><span class="meta-key">location</span><span class="meta-val">Bengaluru, IN</span></div>
+        <div class="meta-row"><span class="meta-key">since</span><span class="meta-val">Jul 2021</span></div>
+        <div class="meta-row"><span class="meta-key">education</span><span class="meta-val">B.Tech, REVA University</span></div>
+        <div class="meta-row"><span class="meta-key">on-call</span><span class="meta-val">24x7 rotation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2 class="section-title">Stack <span>// tools I actually use</span></h2></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Cloud &amp; IaC</h3>
+        <div class="skill-tags">
+          <span class="tag">AWS (EC2, EKS, IAM)</span><span class="tag">AWS (RDS, S3, VPC)</span><span class="tag">Terraform</span><span class="tag">Azure (AKS, ACR)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Containers</h3>
+        <div class="skill-tags">
+          <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Red Hat OpenShift</span><span class="tag">Helm</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>CI/CD</h3>
+        <div class="skill-tags">
+          <span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Groovy</span><span class="tag">Python</span><span class="tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Platform Eng.</h3>
+        <div class="skill-tags">
+          <span class="tag">ArgoCD / GitOps</span><span class="tag">Istio</span><span class="tag">RBAC</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Observability</h3>
+        <div class="skill-tags">
+          <span class="tag">Prometheus</span><span class="tag">Splunk</span><span class="tag">Dynatrace</span><span class="tag">ELK Stack</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Operations</h3>
+        <div class="skill-tags">
+          <span class="tag">24x7 On-call</span><span class="tag">RCA</span><span class="tag">Incident Mgmt</span><span class="tag">SLA Mgmt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2 class="section-title">Experience <span>// deploy log</span></h2></div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Senior DevOps Engineer</div>
+        <div class="job-meta">Jan 2024 — Present</div>
+      </div>
+      <div class="job-company">Accenture · Bengaluru</div>
+      <ul class="log">
+        <li>Designed and operate <strong>AWS</strong> infrastructure (EKS, EC2, Load Balancers, ASGs, Route 53) provisioned entirely via <strong>Terraform</strong>.</li>
+        <li>Scaled CI/CD to <strong>60+ Jenkins pipelines</strong> and <strong>40+ GitHub Actions workflows</strong> across ~80 microservices, cutting deploy time by <strong>~70%</strong>.</li>
+        <li>Rolled out <strong>ArgoCD</strong>-based GitOps across 4 environments managing ~70 applications, automating sync and rollback.</li>
+        <li>Built observability with <strong>Prometheus</strong>, <strong>Splunk</strong>, <strong>Dynatrace</strong>, and the <strong>ELK Stack</strong>, driving down MTTR.</li>
+        <li>Lead a <strong>24x7 on-call rotation</strong> across 150+ production applications — RCA, major incident coordination, SLA ownership.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">DevOps Engineer</div>
+        <div class="job-meta">Jul 2021 — Dec 2023</div>
+      </div>
+      <div class="job-company">Accenture · Bengaluru</div>
+      <ul class="log">
+        <li>Provisioned AWS infrastructure with <strong>Terraform</strong> — VPCs, EC2, EKS clusters, IAM roles, RDS, S3.</li>
+        <li>Built <strong>Jenkins</strong> CI/CD pipelines automating build, <strong>Docker</strong> image creation, deployment, and rollback in Python, Groovy, and Bash.</li>
+        <li>Led migration of <strong>~50 microservices</strong> from VMs to containerized, Kubernetes-based deployments — namespaces, RBAC, Helm charts, autoscaling.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2 class="section-title">Highlights <span>// numbers that matter</span></h2></div>
+    <div class="highlights">
+      <div class="hcard"><div class="hnum">70%</div><div class="hlabel">Faster deployments after scaling Jenkins Shared Libraries and GitHub Actions workflows across ~80 microservices.</div></div>
+      <div class="hcard"><div class="hnum">50</div><div class="hlabel">Microservices migrated from legacy VMs to Kubernetes-based container deployments.</div></div>
+      <div class="hcard"><div class="hnum">70</div><div class="hlabel">Applications running under ArgoCD-managed GitOps across four environments.</div></div>
+      <div class="hcard"><div class="hnum">150+</div><div class="hlabel">Production applications supported through a 24x7 on-call rotation with SLA ownership.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <h2>Let's talk infrastructure.</h2>
+      <p>Open to Senior DevOps / Cloud Infrastructure roles — Bengaluru or remote.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:anujmishra0801@outlook.com">anujmishra0801@outlook.com</a>
+        <a class="btn btn-ghost" href="tel:+919785958507">+91-9785958507</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/anuj-kumar-mishra-8369a71a2" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Anuj Mishra · built with vanilla HTML/CSS/JS</div>
+</footer>
+
+<script>
+  // Smooth-scroll for in-page nav buttons. Uses buttons (not <a href>) and
+  // avoids history.pushState so it works inside sandboxed/embedded previews
+  // that intercept anchor-based navigation.
+  document.querySelectorAll('.navlink').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const target = document.getElementById(this.dataset.target);
+      if(target){
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+</script>
+
+<script>
+  const roles = [
+    "AWS · Terraform · Kubernetes · Docker",
+    "Jenkins · GitHub Actions · CI/CD",
+    "ArgoCD · GitOps · Platform Engineering",
+    "Prometheus · Splunk · Dynatrace · ELK"
+  ];
+  const el = document.getElementById('typed-role');
+  let ri = 0, ci = 0, deleting = false;
+
+  function tick(){
+    const current = roles[ri];
+    if(!deleting){
+      ci++;
+      el.textContent = current.slice(0, ci);
+      if(ci === current.length){
+        deleting = true;
+        setTimeout(tick, 1400);
+        return;
+      }
+    } else {
+      ci--;
+      el.textContent = current.slice(0, ci);
+      if(ci === 0){
+        deleting = false;
+        ri = (ri + 1) % roles.length;
+      }
+    }
+    setTimeout(tick, deleting ? 28 : 45);
+  }
+  tick();
+</script>
+
+</body>
+</html>
